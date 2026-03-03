@@ -46,6 +46,43 @@ public:
     push_back(value);
     head = head->prev;
   }
+
+  void pop_back() {
+    if (empty()) return;
+
+    Node* tail = head->prev;
+
+    if (head == tail) {
+      delete head;
+      head = nullptr;
+    } else {
+      Node* newTail = tail->prev;
+
+      newTail->next = head;
+      head->prev = newTail;
+
+      delete tail;
+    }
+  }
+
+  void pop_front() {
+    if (empty()) return;
+
+    Node* tail = head->prev;
+
+    if (head == tail) {
+      delete head;
+      head = nullptr;
+    } else {
+      Node* newHead = head->next;
+
+      tail->next = newHead;
+      newHead->prev = tail;
+
+      delete head;
+      head = newHead;
+    }
+  }
 };
 
 #endif
