@@ -17,10 +17,30 @@ private:
     Node* head;
 
 public:
-    BiList() : head(nullptr) {}
+  BiList() : head(nullptr) {}
 
-    bool empty() const {
-        return head == nullptr;
+  bool empty() const
+  {
+    return head == nullptr;
+  }
+
+  void push_back(const T& value) {
+    Node* newNode = new Node(value);
+
+      if (empty()) {
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        head = newNode;
+        } else {
+    Node* tail = head->prev;
+
+      newNode->next = head;
+      newNode->prev = tail;
+
+      tail->next = newNode;
+      head->prev = newNode;
+
+        }
     }
 };
 
