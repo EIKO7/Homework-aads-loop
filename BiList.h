@@ -20,6 +20,10 @@ private:
 public:
   BiList() : head(nullptr) {}
 
+  ~BiList() {
+    clear();
+  }
+
   bool empty() const {
     return head == nullptr;
   }
@@ -81,6 +85,28 @@ public:
 
       delete head;
       head = newHead;
+    }
+  }
+
+  void print() const {
+    if (empty()) {
+      std::cout << "List is empty\n";
+      return;
+    }
+
+    Node* current = head;
+
+    do {
+      std::cout << current->val << " ";
+      current = current->next;
+    } while (current != head);
+
+    std::cout << std::endl;
+  }
+
+  void clear() {
+    while (!empty()) {
+      pop_front();
     }
   }
 };
