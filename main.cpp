@@ -1,12 +1,11 @@
 #include "BiList.h"
-#include <iostream>
 
-int main() {
+int main()
+{
+  BiList<int> list;
 
-    BiList<int> list;
+  list.push_back(10);
+  list.push_front(5);
 
-    list.push_back(10);
-    list.push_back(20);
-
-    return 0;
+  return 0;
 }

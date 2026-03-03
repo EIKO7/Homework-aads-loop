@@ -11,37 +11,41 @@ private:
     Node* next;
     Node* prev;
 
-    Node(const T& value) : val(value), next(nullptr), prev(nullptr) {}
-    };
+    Node(const T& value)
+      : val(value), next(nullptr), prev(nullptr) {}
+  };
 
-    Node* head;
+  Node* head;
 
 public:
   BiList() : head(nullptr) {}
 
-  bool empty() const
-  {
+  bool empty() const {
     return head == nullptr;
   }
 
   void push_back(const T& value) {
     Node* newNode = new Node(value);
 
-      if (empty()) {
-        newNode->next = newNode;
-        newNode->prev = newNode;
-        head = newNode;
-        } else {
-    Node* tail = head->prev;
+    if (empty()) {
+      newNode->next = newNode;
+      newNode->prev = newNode;
+      head = newNode;
+    } else {
+      Node* tail = head->prev;
 
       newNode->next = head;
       newNode->prev = tail;
 
       tail->next = newNode;
       head->prev = newNode;
-
-        }
     }
+  }
+
+  void push_front(const T& value) {
+    push_back(value);
+    head = head->prev;
+  }
 };
 
 #endif
