@@ -6,31 +6,36 @@
 template <class T>
 class BiList {
 private:
+  // Структура узла двусвязного списка
   struct Node 
   {
     T val;
     Node* next;
     Node* prev;
 
-    Node(const T& value)
-      : val(value), next(nullptr), prev(nullptr) {}
+    Node(const T& value) : val(value), next(nullptr), prev(nullptr) {}
   };
 
   Node* head;
 
 public:
+
+  // Создание пустого списка
   BiList() : head(nullptr) {}
 
+  // Деструктор (освобождение памяти)
   ~BiList() 
   {
     clear();
   }
 
+  // Проверка, пустой ли список
   bool empty() const 
   {
     return head == nullptr;
   }
 
+  // Добавление элемента в конец списка
   void push_back(const T& value) 
   {
     Node* newNode = new Node(value);
@@ -40,8 +45,7 @@ public:
       newNode->next = newNode;
       newNode->prev = newNode;
       head = newNode;
-    } else 
-    {
+    } else {
       Node* tail = head->prev;
 
       newNode->next = head;
@@ -52,12 +56,14 @@ public:
     }
   }
 
+  // Добавление элемента в начало списка
   void push_front(const T& value) 
   {
     push_back(value);
     head = head->prev;
   }
 
+  // Удаление элемента с конца списка
   void pop_back() 
   {
     if (empty()) return;
@@ -78,6 +84,7 @@ public:
     }
   }
 
+  // Удаление элемента из начала списка
   void pop_front() 
   {
     if (empty()) return;
@@ -99,11 +106,12 @@ public:
     }
   }
 
+  // Вывод элементов списка
   void print() const 
   {
     if (empty()) 
     {
-      std::cout << "List is empty\n";
+      std::cout << "Список пуст\n";
       return;
     }
 
@@ -117,8 +125,11 @@ public:
     std::cout << std::endl;
   }
 
-  void clear() {
-    while (!empty()) {
+  // Очистка списка
+  void clear() 
+  {
+    while (!empty()) 
+    {
       pop_front();
     }
   }
