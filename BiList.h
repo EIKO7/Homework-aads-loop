@@ -6,7 +6,8 @@
 template <class T>
 class BiList {
 private:
-  struct Node {
+  struct Node 
+  {
     T val;
     Node* next;
     Node* prev;
@@ -20,22 +21,27 @@ private:
 public:
   BiList() : head(nullptr) {}
 
-  ~BiList() {
+  ~BiList() 
+  {
     clear();
   }
 
-  bool empty() const {
+  bool empty() const 
+  {
     return head == nullptr;
   }
 
-  void push_back(const T& value) {
+  void push_back(const T& value) 
+  {
     Node* newNode = new Node(value);
 
-    if (empty()) {
+    if (empty()) 
+    {
       newNode->next = newNode;
       newNode->prev = newNode;
       head = newNode;
-    } else {
+    } else 
+    {
       Node* tail = head->prev;
 
       newNode->next = head;
@@ -46,17 +52,20 @@ public:
     }
   }
 
-  void push_front(const T& value) {
+  void push_front(const T& value) 
+  {
     push_back(value);
     head = head->prev;
   }
 
-  void pop_back() {
+  void pop_back() 
+  {
     if (empty()) return;
 
     Node* tail = head->prev;
 
-    if (head == tail) {
+    if (head == tail) 
+    {
       delete head;
       head = nullptr;
     } else {
@@ -69,12 +78,14 @@ public:
     }
   }
 
-  void pop_front() {
+  void pop_front() 
+  {
     if (empty()) return;
 
     Node* tail = head->prev;
 
-    if (head == tail) {
+    if (head == tail) 
+    {
       delete head;
       head = nullptr;
     } else {
@@ -88,8 +99,10 @@ public:
     }
   }
 
-  void print() const {
-    if (empty()) {
+  void print() const 
+  {
+    if (empty()) 
+    {
       std::cout << "List is empty\n";
       return;
     }
